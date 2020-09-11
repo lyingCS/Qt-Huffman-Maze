@@ -1,0 +1,17 @@
+#ifndef STACKF_H
+#define STACKF_H
+
+#include<vector>
+
+using namespace std;
+
+class StackF
+{
+private:
+    vector<pair<int,int>> foot{{1,0},{-1,0},{0,1},{0,-1}};
+public:
+    StackF();
+    
+};
+
+#endif // STACKF_H
