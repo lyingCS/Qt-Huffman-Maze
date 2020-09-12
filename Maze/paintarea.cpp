@@ -12,10 +12,12 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent),status(0)
 void PaintArea::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-    if(status==1||status==2)
+    if(status==1||status==2||status==3)
         drawMaze();
     if(status==2)
         drawPath();
+    if(status==3)
+        drawPath_2();
 }
 
 void PaintArea::initMaze(int m, int n)
@@ -83,9 +85,28 @@ void PaintArea::findPath()
     update();
 }
 
+void PaintArea::findPath_2()
+{
+    stac=new StackF(*maze);
+    stac->findPath(*maze);
+    status=3;
+    update();
+}
 
-
-
+void PaintArea::drawPath_2()
+{
+    QPainter p(this);
+    brush.setColor(QColor(0,255,255,255));
+    brush.setStyle(Qt::SolidPattern);
+    p.setBrush(brush);
+    for(int i=0;i<(int)stac->path.size();i++)
+    {
+        int x=stac->path[i].first;
+        int y=stac->path[i].second;
+        QRectF rect{y*step,x*step,step,step};
+        p.drawEllipse(rect);
+    }
+}
 
 
 

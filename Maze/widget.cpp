@@ -12,11 +12,11 @@ Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
+    ui->setupUi(this);
     setPalette(QPalette(Qt::green));
     setAutoFillBackground(true);
     paintArea=new PaintArea(this);
     paintArea->move(70,70);
-    ui->setupUi(this);
 }
 
 Widget::~Widget()
@@ -57,4 +57,9 @@ void Widget::on_makeButton_clicked()
 void Widget::on_findButton_clicked()
 {
     paintArea->findPath();
+}
+
+void Widget::on_pushButton_clicked()
+{
+    paintArea->findPath_2();
 }

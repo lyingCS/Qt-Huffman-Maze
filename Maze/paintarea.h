@@ -7,6 +7,7 @@
 #include<QPainter>
 #include<astar.h>
 #include"maze.h"
+#include<stackf.h>
 
 class PaintArea : public QWidget
 {
@@ -19,6 +20,7 @@ private:
     int status;
     Astar *star;
     double step;
+    StackF *stac;
 
 public:
     explicit PaintArea(QWidget *parent = nullptr);
@@ -27,6 +29,8 @@ public:
     void drawMaze();
     void findPath();
     void drawPath();
+    void findPath_2();
+    void drawPath_2();
 
 signals:
 

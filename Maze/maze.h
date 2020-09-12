@@ -17,6 +17,7 @@ private:
     int width;
     friend class Astar;
     friend class PaintArea;
+    friend class StackF;
 public:
     Maze();
     Maze(int m,int n);
