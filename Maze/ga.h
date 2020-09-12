@@ -27,6 +27,8 @@ private:
     vector<Player> parents;
     vector<Player> sons;
     bool isFound;
+    int murate;
+    int surate;
     struct
     {
         int num;
@@ -35,7 +37,7 @@ private:
     friend class PaintArea;
 
 public:
-    GA(Maze& maze,int times);
+    GA(Maze& maze,int times,int nums,int rate,int rate_2);
     void calAdapt(Maze& maze);
     void evolution();
     bool findPath(Maze& maze);

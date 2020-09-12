@@ -49,6 +49,10 @@ void Widget::on_makeButton_clicked()
         return;
     }
     ui->label->setText("click \"find\" to find a path");
+    ui->lineEdit->setEnabled(true);
+    ui->lineEdit_2->setEnabled(true);
+    ui->lineEdit_3->setEnabled(true);
+    ui->lineEdit_4->setEnabled(true);
     ui->findButton->setEnabled(true);
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
@@ -68,15 +72,48 @@ void Widget::on_pushButton_clicked()
 void Widget::on_pushButton_2_clicked()
 {
     QString times=ui->lineEdit->text();
+    QString nums=ui->lineEdit_2->text();
+    QString rate=ui->lineEdit_3->text();
+    QString rate_2=ui->lineEdit_4->text();
     if(times.isEmpty())
     {
         QMessageBox::critical(this,"Error","Please input the evolution times!");
         return;
     }
-    if(times.toInt()<0)
+    else if(times.toInt()<=0)
     {
-        QMessageBox::critical(this,"Error","evolution times>0");
+        QMessageBox::critical(this,"Error","evolution times should>0");
         return;
     }
-    paintArea->findPath_3(times.toInt());
+    if(nums.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the parent number!");
+        return;
+    }
+    else if(nums.toInt()<=20)
+    {
+        QMessageBox::critical(this,"Error","parent number should>20!");
+        return;
+    }
+    if(rate.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the mutation rate!");
+        return;
+    }
+    else if(rate.toInt()<=0||rate.toInt()>20)
+    {
+        QMessageBox::critical(this,"Error","0<mutation rate<=20!");
+        return;
+    }
+    if(rate_2.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the survival rate!");
+        return;
+    }
+    else if(rate_2.toInt()<=0||rate_2.toInt()>40)
+    {
+        QMessageBox::critical(this,"Error","0<survival rate<=40!");
+        return;
+    }
+    paintArea->findPath_3(times.toInt(),nums.toInt(),rate.toInt(),rate_2.toInt());
 }

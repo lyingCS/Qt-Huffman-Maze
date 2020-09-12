@@ -11,12 +11,13 @@ Player::Player(int n)
     }
 }
 
-GA::GA(Maze& maze,int times):playerNum(1000),fatherNum(50),te({maze.height-1,maze.width-1}),evolutionTimes(times),isFound(false)
+GA::GA(Maze& maze,int times,int nums,int rate,int rate_2):playerNum(nums),evolutionTimes(times),te({maze.height-1,maze.width-1}),isFound(false),murate(rate),surate(rate_2)
 {
+    fatherNum=playerNum*surate/100;
     int size=maze.height*maze.width;
     sons.resize(playerNum);
     geneLength=3*(maze.height+maze.width);
-    variation=geneLength/10;
+    variation=geneLength*murate/100;
     for(int i=0;i<playerNum;i++)
     {
         parents.push_back(Player(3*size));
@@ -28,7 +29,7 @@ void GA::evolution()
 {
     srand((unsigned)time(NULL));
     int i=0;
-    for(i=0;i<fatherNum&&parents[i].adapt>0;i++)
+    for(i=0;i<fatherNum;i++)
         sons[i]=parents[i];
     for(;i<playerNum;i++)
     {
@@ -42,7 +43,8 @@ void GA::evolution()
         }
         for(int j=pos;j<geneLength;j++)
         {
-            sons[i].genes.resize(geneLength);
+            if((int)sons[i].genes.size()!=geneLength)
+                sons[i].genes.resize(geneLength);
             sons[i].genes[j]=parents[mom].genes[j];
         }
     }

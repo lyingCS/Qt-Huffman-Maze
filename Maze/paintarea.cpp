@@ -112,11 +112,11 @@ void PaintArea::drawPath_2()
     }
 }
 
-void PaintArea::findPath_3(int times)
+void PaintArea::findPath_3(int times,int nums,int rate,int rate_2)
 {
-    ga=new GA(*maze,times);
+    ga=new GA(*maze,times,nums,rate,rate_2);
     if(!ga->findPath(*maze))
-        QMessageBox::critical(this,"Error","Path not found, try change the evolution times...");;
+        QMessageBox::critical(this,"Error","Path not found, try change the evolution times, parents number or the mutation rate...");
     status=4;
     update();
 }
@@ -131,7 +131,7 @@ void PaintArea::drawPath_3()
     int x=0,y=0;
     QRectF rect{y*step+step/4,x*step+step/4,step/2,step/2};
     p.drawEllipse(rect);
-    for(int i=0;i<path.size();i++)
+    for(int i=0;i<(int)path.size();i++)
     {
         int score=x*maze->width+y;
         if(path[i]==0)
