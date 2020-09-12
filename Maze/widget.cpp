@@ -51,6 +51,7 @@ void Widget::on_makeButton_clicked()
     ui->label->setText("click \"find\" to find a path");
     ui->findButton->setEnabled(true);
     ui->pushButton->setEnabled(true);
+    ui->pushButton_2->setEnabled(true);
     paintArea->initMaze(heightStr.toInt(),widthStr.toInt());
 }
 
@@ -62,4 +63,20 @@ void Widget::on_findButton_clicked()
 void Widget::on_pushButton_clicked()
 {
     paintArea->findPath_2();
+}
+
+void Widget::on_pushButton_2_clicked()
+{
+    QString times=ui->lineEdit->text();
+    if(times.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the evolution times!");
+        return;
+    }
+    if(times.toInt()<0)
+    {
+        QMessageBox::critical(this,"Error","evolution times>0");
+        return;
+    }
+    paintArea->findPath_3(times.toInt());
 }

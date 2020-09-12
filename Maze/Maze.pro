@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     astar.cpp \
     disjsets.cpp \
+    ga.cpp \
     main.cpp \
     maze.cpp \
     paintarea.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 HEADERS += \
     astar.h \
     disjsets.h \
+    ga.h \
     maze.h \
     paintarea.h \
     stackf.h \
