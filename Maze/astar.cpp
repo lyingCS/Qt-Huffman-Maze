@@ -85,7 +85,7 @@ void Astar::search(int score,Maze& maze)
     }
     if(x<height-1)
     {
-        if(maze.s.count({score,score+width})&&!closed.count(score+width)&&(father[score+width].first==-1||_g+1<vec[score-width][1]))
+        if(maze.s.count({score,score+width})&&!closed.count(score+width)&&(father[score+width].first==-1||_g+1<vec[score+width][1]))
         {
             father[score+width]={x,y};
             vec[score+width][0]=h(x+1,y);
