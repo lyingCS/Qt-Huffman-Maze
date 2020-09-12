@@ -37,7 +37,7 @@ private:
     friend class PaintArea;
 
 public:
-    GA(Maze& maze,int times,int nums,int rate,int rate_2);
+    GA(Maze& maze,int times,int nums,int rate,int rate_2,int length);
     void calAdapt(Maze& maze);
     void evolution();
     bool findPath(Maze& maze);

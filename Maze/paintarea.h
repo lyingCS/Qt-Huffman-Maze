@@ -33,7 +33,7 @@ public:
     void drawPath();
     void findPath_2();
     void drawPath_2();
-    void findPath_3(int times,int nums,int rate,int rate_2);
+    void findPath_3(int times,int nums,int rate,int rate_2,int length);
     void drawPath_3();
 
 signals:

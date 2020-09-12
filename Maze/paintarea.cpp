@@ -112,9 +112,9 @@ void PaintArea::drawPath_2()
     }
 }
 
-void PaintArea::findPath_3(int times,int nums,int rate,int rate_2)
+void PaintArea::findPath_3(int times,int nums,int rate,int rate_2,int length)
 {
-    ga=new GA(*maze,times,nums,rate,rate_2);
+    ga=new GA(*maze,times,nums,rate,rate_2,length);
     if(!ga->findPath(*maze))
         QMessageBox::critical(this,"Error","Path not found, try change the evolution times, parents number or the mutation rate...");
     status=4;

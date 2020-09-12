@@ -53,6 +53,7 @@ void Widget::on_makeButton_clicked()
     ui->lineEdit_2->setEnabled(true);
     ui->lineEdit_3->setEnabled(true);
     ui->lineEdit_4->setEnabled(true);
+    ui->lineEdit_5->setEnabled(true);
     ui->findButton->setEnabled(true);
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
@@ -75,6 +76,7 @@ void Widget::on_pushButton_2_clicked()
     QString nums=ui->lineEdit_2->text();
     QString rate=ui->lineEdit_3->text();
     QString rate_2=ui->lineEdit_4->text();
+    QString length=ui->lineEdit_5->text();
     if(times.isEmpty())
     {
         QMessageBox::critical(this,"Error","Please input the evolution times!");
@@ -115,5 +117,15 @@ void Widget::on_pushButton_2_clicked()
         QMessageBox::critical(this,"Error","0<survival rate<=40!");
         return;
     }
-    paintArea->findPath_3(times.toInt(),nums.toInt(),rate.toInt(),rate_2.toInt());
+    if(length.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the length!");
+        return;
+    }
+    else if(length.toInt()<=5)
+    {
+        QMessageBox::critical(this,"Error","length>5!");
+        return;
+    }
+    paintArea->findPath_3(times.toInt(),nums.toInt(),rate.toInt(),rate_2.toInt(),length.toInt());
 }

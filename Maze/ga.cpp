@@ -11,12 +11,12 @@ Player::Player(int n)
     }
 }
 
-GA::GA(Maze& maze,int times,int nums,int rate,int rate_2):playerNum(nums),evolutionTimes(times),te({maze.height-1,maze.width-1}),isFound(false),murate(rate),surate(rate_2)
+GA::GA(Maze& maze,int times,int nums,int rate,int rate_2,int length):playerNum(nums),evolutionTimes(times),te({maze.height-1,maze.width-1}),isFound(false),murate(rate),surate(rate_2)
 {
     fatherNum=playerNum*surate/100;
     int size=maze.height*maze.width;
     sons.resize(playerNum);
-    geneLength=3*(maze.height+maze.width);
+    geneLength=length*(maze.height+maze.width);
     variation=geneLength*murate/100;
     for(int i=0;i<playerNum;i++)
     {
