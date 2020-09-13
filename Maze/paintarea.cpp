@@ -14,7 +14,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent),status(0)
 void PaintArea::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-    if(status==1||status==2||status==3||4==status)
+    if(status==1||status==2||status==3||4==status||5==status)
         drawMaze();
     if(status==2)
         drawPath();
@@ -22,6 +22,8 @@ void PaintArea::paintEvent(QPaintEvent *)
         drawPath_2();
     if(status==4)
         drawPath_3();
+    if(status==5)
+        drawPath_4();
 }
 
 void PaintArea::initMaze(int m, int n)
@@ -116,7 +118,7 @@ void PaintArea::findPath_3(int times,int nums,int rate,int rate_2,int length)
 {
     ga=new GA(*maze,times,nums,rate,rate_2,length);
     if(!ga->findPath(*maze))
-        QMessageBox::critical(this,"Error","Path not found, try change the evolution times, parents number or the mutation rate...");
+        QMessageBox::critical(this,"Error","Path not found, try change the parameters...");
     status=4;
     update();
 }
@@ -165,5 +167,27 @@ void PaintArea::drawPath_3()
     }
 }
 
+void PaintArea::findPath_4(int ants,int delta,double alpha,int iter,double minP,double maxP)
+{
+    aco=new ACO(*maze,ants,delta,alpha,iter,minP,maxP);
+    if(!aco->findPath(*maze))
+        QMessageBox::critical(this,"Error","Path not found, try increase the ants number...");
+    status=5;
+    update();
+}
+void PaintArea::drawPath_4()
+{
+    QPainter p(this);
+    brush.setColor(QColor(255,0,0));
+    brush.setStyle(Qt::SolidPattern);
+    p.setBrush(brush);
+    for(auto score:aco->bestPath)
+    {
+        int x=score/maze->width;
+        int y=score%maze->width;
+        QRectF rect{y*step+step/4,x*step+step/4,step/2,step/2};
+        p.drawEllipse(rect);
+    }
+}
 
 

@@ -57,6 +57,13 @@ void Widget::on_makeButton_clicked()
     ui->findButton->setEnabled(true);
     ui->pushButton->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
+    ui->findAcoButton->setEnabled(true);
+    ui->antsLineEdit->setEnabled(true);
+    ui->deltaLineEdit->setEnabled(true);
+    ui->alphaLineEdit->setEnabled(true);
+    ui->iterLineEdit->setEnabled(true);
+    ui->minLineEdit->setEnabled(true);
+    ui->maxLineEdit->setEnabled(true);
     paintArea->initMaze(heightStr.toInt(),widthStr.toInt());
 }
 
@@ -129,3 +136,45 @@ void Widget::on_pushButton_2_clicked()
     }
     paintArea->findPath_3(times.toInt(),nums.toInt(),rate.toInt(),rate_2.toInt(),length.toInt());
 }
+
+void Widget::on_findAcoButton_clicked()
+{
+    QString ants=ui->antsLineEdit->text();
+    QString delta=ui->deltaLineEdit->text();
+    QString alpha=ui->antsLineEdit->text();
+    QString iter=ui->iterLineEdit->text();
+    QString minP=ui->minLineEdit->text();
+    QString maxP=ui->maxLineEdit->text();
+    paintArea->findPath_4(ants.toInt(),delta.toInt(),alpha.toDouble(),iter.toInt(),minP.toDouble(),maxP.toDouble());
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

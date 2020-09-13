@@ -19,6 +19,7 @@ private:
     friend class PaintArea;
     friend class StackF;
     friend class GA;
+    friend class ACO;
 public:
     Maze();
     Maze(int m,int n);

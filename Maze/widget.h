@@ -27,6 +27,8 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_findAcoButton_clicked();
+
 private:
     Ui::Widget *ui;
     PaintArea *paintArea;
