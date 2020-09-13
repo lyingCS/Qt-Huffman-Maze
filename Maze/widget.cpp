@@ -67,8 +67,9 @@ void Widget::on_makeButton_clicked()
     ui->minLineEdit->setEnabled(true);
     ui->maxLineEdit->setEnabled(true);
     paintArea->initMaze(heightStr.toInt(),widthStr.toInt());
+    ui->antsLineEdit->setText(QString::number(paintArea->maze->height*paintArea->maze->width*(paintArea->maze->height+paintArea->maze->width)/2));
     ui->minLineEdit->setText(QString::number(0.5/(paintArea->maze->height+paintArea->maze->width)));
-    ui->maxLineEdit->setText(QString::number(5*ui->minLineEdit->text().toDouble()));
+    ui->maxLineEdit->setText(QString::number(3*ui->minLineEdit->text().toDouble()));
 }
 
 void Widget::on_findButton_clicked()

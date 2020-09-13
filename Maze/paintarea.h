@@ -38,7 +38,7 @@ public:
     void drawPath_2();
     void findPath_3(int times,int nums,int rate,int rate_2,int length);
     void drawPath_3();
-    void findPath_4(int ants,int delta,double alpha,int iter,double minP,double maxP);
+    void findPath_4(int,int,double,int,double,double);
     void drawPath_4();
 
 signals:

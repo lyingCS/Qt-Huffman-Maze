@@ -38,7 +38,7 @@ private:
     friend class PaintArea;
 
 public:
-    ACO(Maze& maze,int ants,int de=1,double al=0.1,int iter=2000,double iP=0.1,double ap=0.5);
+    ACO(Maze& maze,int,int,double,int,double,double);
     double power(double a,int b);
     void tour(int n,Maze& maze);
     void init();
