@@ -78,7 +78,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>3</string>
+    <string>20</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="widthLineEdit">
@@ -91,7 +91,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>3</string>
+    <string>20</string>
    </property>
   </widget>
   <widget class="QPushButton" name="makeButton">
@@ -414,7 +414,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>6</string>
+    <string>4000</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="deltaLineEdit">
@@ -462,7 +462,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>4</string>
+    <string>20</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="minLineEdit">
@@ -478,7 +478,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0.1</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="maxLineEdit">
@@ -494,7 +494,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0.5</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="findAcoButton">

@@ -25,6 +25,7 @@ private:
     StackF *stac;
     GA *ga;
     ACO *aco;
+    friend class Widget;
 
 public:
     explicit PaintArea(QWidget *parent = nullptr);

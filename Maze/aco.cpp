@@ -1,4 +1,5 @@
 #include "aco.h"
+#include<QDebug>
 
 ACO::ACO(Maze& maze,int ants,int de,double al,int iter,double iP,double ap):antNum(ants),size(maze.height*maze.width),delta(de),alpha(al),iteration(iter),minP(iP),maxP(ap)
 {
@@ -27,9 +28,9 @@ void ACO::tour(int n,Maze& maze)
     if(next==INT_MIN)
         return;
     closed[n].insert(next);
+    routes[n].push_back(next);
     if(n<antNum/2)
     {
-        routes[n].push_back(next);
         if(posStart[next].second==-1||posStart[next].first>(int)routes[n].size())
         {
             posStart[next].first=routes[n].size();
@@ -48,7 +49,6 @@ void ACO::tour(int n,Maze& maze)
     }
     else
     {
-        routes[n].push_back(next);
         if(posEnd[next].second==-1||posEnd[next].first>(int)routes[n].size())
         {
             posEnd[next].first=routes[n].size();
@@ -81,10 +81,18 @@ void ACO::init()
         routes[j]={size-1};
         closed[j].insert(size-1);
     }
-    posStart.resize(size,{-1,-1});
-    posStart[0]={0,0};
-    posEnd.resize(size,{-1,-1});
-    posEnd[size-1]={0,antNum-1};
+    posStart.resize(size);
+    for(int i=0;i<size;i++)
+    {
+        posStart[i]={-1,-1};
+    }
+    posStart[0]={1,0};
+    posEnd.resize(size);
+    for(int i=0;i<size;i++)
+    {
+        posEnd[i]={-1,-1};
+    }
+    posEnd[size-1]={1,antNum-1};
     bestInfo={0,0,0,INT_MAX};
 }
 
@@ -93,7 +101,7 @@ void ACO::updateP()
     for(int i=0;i<size;i++)
     {
         if(bestPath.count(i))
-            peromone[i]=(1-alpha)*peromone[i]+1/bestPath.size();
+            peromone[i]=(1-alpha)*peromone[i]+1.0/bestPath.size();
         else
             peromone[i]=(1-alpha)*peromone[i];
         peromone[i]=max(peromone[i],minP);

@@ -5,6 +5,8 @@
 #include<QPen>
 #include<QPainter>
 #include<QRect>
+#include<string>
+#include<QDebug>
 
 extern Maze maze;
 
@@ -65,6 +67,8 @@ void Widget::on_makeButton_clicked()
     ui->minLineEdit->setEnabled(true);
     ui->maxLineEdit->setEnabled(true);
     paintArea->initMaze(heightStr.toInt(),widthStr.toInt());
+    ui->minLineEdit->setText(QString::number(0.5/(paintArea->maze->height+paintArea->maze->width)));
+    ui->maxLineEdit->setText(QString::number(5*ui->minLineEdit->text().toDouble()));
 }
 
 void Widget::on_findButton_clicked()
@@ -141,10 +145,70 @@ void Widget::on_findAcoButton_clicked()
 {
     QString ants=ui->antsLineEdit->text();
     QString delta=ui->deltaLineEdit->text();
-    QString alpha=ui->antsLineEdit->text();
+    QString alpha=ui->alphaLineEdit->text();
     QString iter=ui->iterLineEdit->text();
     QString minP=ui->minLineEdit->text();
     QString maxP=ui->maxLineEdit->text();
+    if(ants.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the ants number!");
+        return;
+    }
+    else if(ants.toInt()<=10)
+    {
+        QMessageBox::critical(this,"Error","ants number>10!");
+        return;
+    }
+    if(delta.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the delta!");
+        return;
+    }
+    else if(delta.toInt()<=0)
+    {
+        QMessageBox::critical(this,"Error","delta>0!");
+        return;
+    }
+    if(alpha.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the alpha!");
+        return;
+    }
+    else if(alpha.toDouble()<=0||alpha.toDouble()>=1)
+    {
+        QMessageBox::critical(this,"Error","0<alpha<1!");
+        return;
+    }
+    if(iter.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the iteration times!");
+        return;
+    }
+    else if(iter.toInt()<=0)
+    {
+        QMessageBox::critical(this,"Error","iteration times>=0!");
+        return;
+    }
+    if(minP.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the min of peromone!");
+        return;
+    }
+    else if(minP.toDouble()<=0||minP.toDouble()>=0.5)
+    {
+        QMessageBox::critical(this,"Error","0<min of peromone<0.5!");
+        return;
+    }
+    if(maxP.isEmpty())
+    {
+        QMessageBox::critical(this,"Error","Please input the max if peromone!");
+        return;
+    }
+    else if(maxP.toDouble()<=minP.toDouble())
+    {
+        QMessageBox::critical(this,"Error","maxP>minP!");
+        return;
+    }
     paintArea->findPath_4(ants.toInt(),delta.toInt(),alpha.toDouble(),iter.toInt(),minP.toDouble(),maxP.toDouble());
 }
 

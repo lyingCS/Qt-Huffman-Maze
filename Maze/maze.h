@@ -20,6 +20,7 @@ private:
     friend class StackF;
     friend class GA;
     friend class ACO;
+    friend class Widget;
 public:
     Maze();
     Maze(int m,int n);
