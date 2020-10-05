@@ -1,6 +1,6 @@
 #include "huffmancomp.h"
 
-HuffmanComp::HuffmanComp(QString buffer,QDataStream& out)
+HuffmanComp::HuffmanComp(QString buffer,QTextStream& out)
 {
     for(auto x:buffer)
         countNum[x]++;
@@ -33,7 +33,7 @@ void HuffmanComp::buildCode(Node* node,QString s)
     buildCode(node->right,s+'1');
 }
 
-void HuffmanComp::writeTrie(QDataStream &out,Node* root)
+void HuffmanComp::writeTrie(QTextStream &out,Node* root)
 {
     if(root->isLeaf())
     {
@@ -46,16 +46,34 @@ void HuffmanComp::writeTrie(QDataStream &out,Node* root)
     writeTrie(out,root->right);
 }
 
-void HuffmanComp::writeCode(QDataStream& out,const QString& buffer)
+void HuffmanComp::writeCode(QTextStream& out,const QString& buffer)
 {
+    QString s;
+    out<<buffer.size()<<'\n';
     for(auto x:buffer)
     {
-        for(auto y:mp[x])
+        s+=mp[x];
+    }
+    char ch=0;
+    int cnt=0;
+    for(int i=0;i<s.size();i++)
+    {
+        char k=s[i]=='1'?1:0;
+        ch=(ch<<1)+k;
+        cnt++;
+        if(cnt==7)
         {
-            if(y=="1")
-                out<<(bool)1;
-            else
-                out<<(bool)0;
+            out<<ch;
+            cnt=0;
+            ch=0;
         }
     }
+    if(cnt==0)
+        return;
+    while(cnt!=7)
+    {
+        cnt++;
+        ch=(ch<<1);
+    }
+    out<<ch;
 }

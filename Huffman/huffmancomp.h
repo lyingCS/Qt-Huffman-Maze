@@ -29,14 +29,14 @@ public:
             return n1->freq>n2->freq;
         }
     };
-    HuffmanComp(QString buffer,QDataStream& out);
+    HuffmanComp(QString buffer,QTextStream& out);
 private:
     QHash<QChar,int> countNum;
     priority_queue<Node*,vector<Node*>,cmp> que;
     QHash<QChar,QString> mp;
     void buildCode(Node* n,QString s);
-    void writeTrie(QDataStream& out,Node* root);
-    void writeCode(QDataStream& out,const QString& buffer);
+    void writeTrie(QTextStream& out,Node* root);
+    void writeCode(QTextStream& out,const QString& buffer);
 };
 
 #endif // HUFFMANCOMP_H

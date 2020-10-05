@@ -66,6 +66,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -79,6 +82,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -94,8 +100,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>370</y>
+     <x>350</x>
+     <y>360</y>
      <width>101</width>
      <height>21</height>
     </rect>

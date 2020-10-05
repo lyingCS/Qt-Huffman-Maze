@@ -23,6 +23,7 @@ public:
     ~Widget();
     HuffmanComp* comp;
     HuffmanDecomp* deComp;
+    QString buffer;
 
 private slots:
     void on_pushButton_clicked();
@@ -35,7 +36,6 @@ private:
     Ui::Widget *ui;
     QString fileName;
     void loadFile(QString fileName);
-    QString buffer;
     QString outFileName;
 };
 #endif // WIDGET_H
