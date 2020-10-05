@@ -33,19 +33,28 @@ void Widget::loadFile(QString fileName)
         QTextStream in(&data);
         in >> buffer;
         outFileName=fileName;
-        if(outFileName.endsWith(tr("_comp.txt")))
-            outFileName.replace(outFileName.size()-9,9,".txt"),ui->label_2->setText(outFileName);
+        if(outFileName.endsWith(tr(".txt")))
+            outFileName.replace(outFileName.size()-4,4,".dat"),ui->label_2->setText(outFileName);
         else
-            outFileName.replace(outFileName.size()-4,4,"_comp.txt"),ui->label_2->setText(outFileName);
+            outFileName.replace(outFileName.size()-4,4,".txt"),ui->label_2->setText(outFileName);
     }
     else
-        QMessageBox::critical(this,"Error","Can't open this file!");
+        QMessageBox::critical(this,"Error","Can't open the input file!");
 }
 
 void Widget::on_pushButton_2_clicked()
 {
-    comp=new HuffmanComp(buffer);
-    int i=0;
+    QFile outPut(outFileName);
+    if(outPut.open(QFile::WriteOnly|QFile::Truncate))
+    {
+        QDataStream out(&outPut);
+        comp=new HuffmanComp(buffer,out);
+    }
+    else
+    {
+        QMessageBox::critical(this,"Error","Can't open the output file!");
+        return;
+    }
 }
 
 void Widget::on_pushButton_3_clicked()

@@ -1,9 +1,12 @@
 #ifndef HUFFMANCOMP_H
 #define HUFFMANCOMP_H
 #include<QWidget>
+#include<QTextStream>
 #include<unordered_map>
 #include<queue>
 #include<QHash>
+#include<QtDebug>
+#include<QDataStream>
 
 using namespace std;
 
@@ -26,12 +29,14 @@ public:
             return n1->freq>n2->freq;
         }
     };
-    HuffmanComp(QString buffer);
+    HuffmanComp(QString buffer,QDataStream& out);
 private:
     QHash<QChar,int> countNum;
     priority_queue<Node*,vector<Node*>,cmp> que;
     QHash<QChar,QString> mp;
     void buildCode(Node* n,QString s);
+    void writeTrie(QDataStream& out,Node* root);
+    void writeCode(QDataStream& out,const QString& buffer);
 };
 
 #endif // HUFFMANCOMP_H

@@ -8,6 +8,7 @@
 #include<QMessageBox>
 #include<huffmancomp.h>
 #include<huffmandecomp.h>
+#include<QDataStream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
